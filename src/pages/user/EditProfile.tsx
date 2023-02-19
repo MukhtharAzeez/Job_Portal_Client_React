@@ -4,13 +4,14 @@ import { useSelector } from "react-redux";
 import { MobileBottom, NavBar, SideBar, SideBarWithoutText } from '../../components/Common'
 import { USER_SIDEBAR_LINKS } from '../../constants/User-sideBar'
 import { EditProfile } from "../../components/User";
+import { Helmet } from "react-helmet";
 
 function Edit() {
     return (
         <>
-            {/* <Head>
+            <Helmet>
                 <title>Edit-Profile</title>
-            </Head> */}
+            </Helmet>
             <Box className="bg-gray-200 min-h-[100vh]" color={"text.primary"}>
                 <NavBar  type={'user'} />
                 <div className="border ">

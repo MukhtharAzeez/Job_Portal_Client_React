@@ -9,6 +9,7 @@ import { sendMessageToFriend } from "../../../api/User/Post/user";
 import { currentCompanyAdmin } from "../../../redux/company-admin/CompanyAdminAuthSlicer";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 interface Props {
     userId: any;
@@ -77,7 +78,7 @@ export function Profile({ userId, user }: Props) {
     
     return (
         <>
-            {/* <Head>
+            <Helmet>
                 <link
                     rel="stylesheet"
                     href="https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css"
@@ -86,7 +87,7 @@ export function Profile({ userId, user }: Props) {
                     rel="stylesheet"
                     href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css"
                 />
-            </Head> */}
+            </Helmet>
 
             <div className="relative flex flex-col min-w-0 min-h-[550px] break-words bg-white xs:w-full lg:w-full mb-6 shadow-xl rounded-lg mt-36">
                 <div className="rounded-lg shadow-lg">

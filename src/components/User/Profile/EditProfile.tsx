@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import { currentUser } from "../../../redux/user/userAuthSlicer";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 export function EditProfile() {
   const { userId } = useSelector(currentUser)
@@ -182,7 +183,7 @@ export function EditProfile() {
   }
   return (
     <>
-      {/* <Head>
+      <Helmet>
         <link
           rel="stylesheet"
           href="https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css"
@@ -191,7 +192,7 @@ export function EditProfile() {
           rel="stylesheet"
           href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css"
         />
-      </Head> */}
+      </Helmet>
       <div className="w-full lg:w-8/12 px-4 mx-auto mt-6">
         <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
           <div className="rounded-t bg-white mb-0 px-6 py-6">
