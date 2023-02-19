@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 
 interface Props {
     userId: any;
-    user: boolean
+    user: boolean | null
 
 }
 
@@ -24,7 +24,7 @@ export function Profile({ userId, user }: Props) {
     const { companyAdminId } = useSelector(currentCompanyAdmin)
     const navigate = useNavigate();
     let friend = false
-    let curUserId: string = ""
+    let curUserId: any
     if (user == null) {
         const current = useSelector(currentUser)
         curUserId = current.userId

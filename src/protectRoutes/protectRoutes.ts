@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addUserDetails, currentUser } from "../redux/user/userAuthSlicer";
 import { useNavigate } from 'react-router-dom';
 
-const UserProtectRouter = ({ children }:any) => {
+export const UserProtectRouter = ({ children }:any) => {
   const dispatch = useDispatch();
   const setId = allUsersIdStore((state:any)=>state.setId)
   const navigate = useNavigate();
@@ -33,5 +33,3 @@ const UserProtectRouter = ({ children }:any) => {
     return children;
   }
 };
-
-export default UserProtectRouter;

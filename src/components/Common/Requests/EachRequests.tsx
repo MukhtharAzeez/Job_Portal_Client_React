@@ -7,7 +7,7 @@ import { Requests } from './Requests';
 
 interface Props {
     type: string,
-    id: string
+    id: any
 }
 interface Request {
     _id: string

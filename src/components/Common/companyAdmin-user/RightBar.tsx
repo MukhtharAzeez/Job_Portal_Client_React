@@ -25,6 +25,7 @@ export function RightBar() {
   const { data, error, isLoading } = useSWR("getRandomCompany", fetcher);
   if (error) return <div>Error....</div>
   if (isLoading) return <div>Loading....</div>
+  if (!data) return <div>Loading....</div>
 
   return (
     <div className="fixed hidden lg:block min-w-[340px] max-w-[340px]">

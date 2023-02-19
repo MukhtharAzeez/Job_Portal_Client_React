@@ -1,5 +1,5 @@
 import './App.css'
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import User from "./Routes/User";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
@@ -10,7 +10,47 @@ const darkTheme = createTheme({
 });
 
 function App() {
+  const setSocket = messageStore((state) => state.setSocket);
+  const setOnlineUsers = messageStore((state) => state.setOnlineUsers);
+  const socket = messageStore((state) => state.socket);
+  const id = allUsersIdStore((state) => state.id)
+  const setIsAnimating = useProgressStore((state) => state.setIsAnimating);
+  const isAnimating = useProgressStore((state) => state.isAnimating);
+  useEffect(() => {
+    const socket = io(import.meta.env.VITE_REACT_SOCKET_DOMAIN);
+    setSocket(socket)
+  }, [])
+  useEffect(() => {
+    if (socket && id) {
+      socket.emit("new-user-add", id);
+    }
+  }, [socket])
 
+  useEffect(() => {
+    if (socket && id) {
+      socket.on("get-user", (users:any) => {
+        setOnlineUsers(users);
+      });
+    }
+  }, [id, socket]);
+
+  useEffect(() => {
+    const handleStart = () => {
+      setIsAnimating(true)
+    }
+    const handleStop = () => {
+      setIsAnimating(false)
+    }
+    // router.events.on('routeChangeStart', handleStart)
+    // router.events.on('routeChangeComplete', handleStop)
+    // router.events.on('routeChangeError', handleStop)
+    return () => {
+      // router.events.off('routeChangeStart', handleStart)
+      // router.events.off('routeChangeComplete', handleStop)
+      // router.events.off('routeChangeError', handleStop)
+    }
+
+  }, [router])
   return (
     <ThemeProvider theme={darkTheme}>
       <Router>

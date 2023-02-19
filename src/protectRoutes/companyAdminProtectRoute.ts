@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addCompanyAdminDetails, currentCompanyAdmin } from "../redux/company-admin/CompanyAdminAuthSlicer";
 import { useNavigate } from 'react-router-dom';
 
-const CompanyAdminProtectRoute = ({ children }: any) => {
+export const CompanyAdminProtectRoute = ({ children }: any) => {
   const dispatch = useDispatch();
   const setId = allUsersIdStore((state:any)=>state.setId)
   const navigate = useNavigate();
@@ -39,5 +39,3 @@ const CompanyAdminProtectRoute = ({ children }: any) => {
     return children;
   }
 };
-
-export default CompanyAdminProtectRoute;

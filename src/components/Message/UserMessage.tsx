@@ -18,18 +18,21 @@ export function UserMessage({type}:{type:string}) {
   const receiveMessages = messageStore((state:any) => state.receiveMessages);
   const setReceiveMessages = messageStore((state:any) => state.setReceiveMessages);
   const location = useLocation()
-  const {senderId, receiverId} = location.state
-
-  async function getChat() {
-    if(senderId && receiverId){
-      const result = await findChat(senderId.toString(), receiverId.toString())
-      setChat(result[0])
-    }
-  }
-  useEffect(()=>{
-    getChat()
-  },[])
+  
+  // async function getChat() {
+  //   if(location.state){
+  //     const { senderId, receiverId } = location.state
+  //     if(senderId && receiverId){
+  //       const result = await findChat(senderId.toString(), receiverId.toString())
+  //       setChat(result[0])
+  //     }
+  //   }
+  // }
+  // useEffect(()=>{
+  //   getChat()
+  // },[])
   useEffect(() => {
+    console.log(socket)
     if (sendMessage !== null && socket) {
       socket.emit("send-message", sendMessage);
     }

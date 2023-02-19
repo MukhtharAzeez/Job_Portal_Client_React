@@ -24,7 +24,7 @@ import { FilledInput } from "@mui/material";
 import { createABusinessPage } from "../../../api/Company/post";
 import { useRef, useState } from "react";
 import { uploadImage } from "../../../api/User/ThirdParty/cloudinary";
-import companySignup from '../../../public/image/companySignup.png'
+import companySignup from '../../../assets/image/companySignup.png'
 import { useNavigate } from "react-router-dom";
 
 const theme = createTheme();

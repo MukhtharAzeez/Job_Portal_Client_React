@@ -7,7 +7,7 @@ import {
 } from "../redux/company/companyAuthSlicer";
 import { useNavigate } from 'react-router-dom';
 
-const CompanyProtectRoute = ({ children }: any) => {
+export const CompanyProtectRoute = ({ children }: any) => {
   const dispatch = useDispatch();
   const setId = allUsersIdStore((state:any) => state.setId);
   const navigate = useNavigate();
@@ -35,5 +35,3 @@ const CompanyProtectRoute = ({ children }: any) => {
     return children;
   }
 };
-
-export default CompanyProtectRoute;

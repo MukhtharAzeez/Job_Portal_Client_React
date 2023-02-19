@@ -5,7 +5,7 @@ import { currentUser } from "../redux/user/userAuthSlicer";
 import { currentCompany } from "../redux/company/companyAuthSlicer";
 import { currentCompanyAdmin } from "../redux/company-admin/CompanyAdminAuthSlicer";
 
-const PublicRoute = ({ children }: any) => {
+export const PublicRoute = ({ children }: any) => {
   const navigate = useNavigate();
 
   const user = useSelector(currentUser);
