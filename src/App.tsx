@@ -3,6 +3,8 @@ import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import User from "./Routes/User";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { allUsersIdStore, messageStore, useProgressStore } from './zustand';
+import { io } from 'socket.io-client';
 const darkTheme = createTheme({
   palette: {
     mode: "dark",
@@ -35,12 +37,12 @@ function App() {
   }, [id, socket]);
 
   useEffect(() => {
-    const handleStart = () => {
-      setIsAnimating(true)
-    }
-    const handleStop = () => {
-      setIsAnimating(false)
-    }
+    // const handleStart = () => {
+    //   setIsAnimating(true)
+    // }
+    // const handleStop = () => {
+    //   setIsAnimating(false)
+    // }
     // router.events.on('routeChangeStart', handleStart)
     // router.events.on('routeChangeComplete', handleStop)
     // router.events.on('routeChangeError', handleStop)
@@ -50,7 +52,7 @@ function App() {
       // router.events.off('routeChangeError', handleStop)
     }
 
-  }, [router])
+  }, [])
   return (
     <ThemeProvider theme={darkTheme}>
       <Router>

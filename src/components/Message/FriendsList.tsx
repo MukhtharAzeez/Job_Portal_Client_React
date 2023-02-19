@@ -15,7 +15,7 @@ interface Props {
 }
 
 export function FriendsList({ setChat, onlineUsers }: Props) {
-    const [id, setId] = useState('')
+    const [id, setId] = useState<any>()
     const [type, setType] = useState('')
     const { userId } = useSelector(currentUser)
     const { companyAdminId } = useSelector(currentCompanyAdmin)

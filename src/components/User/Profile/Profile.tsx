@@ -53,7 +53,7 @@ export function Profile({ userId, user }: Props) {
     async function sendMessage(curUserId: string, userId: string) {
         if (companyAdminId) {
             await sendMessageToFriend(userId, curUserId, 'company')
-            navigate("/company-admin/inbox",{state:{senderId: userId, receiverId: curUserId}})
+            navigate("/company-admin/inbox", { state: { senderId: userId, receiverId: curUserId } })
         } else {
             await sendMessageToFriend(curUserId, userId, 'user')
             navigate("/user/inbox", { state: { senderId: curUserId, receiverId: userId } })
@@ -71,7 +71,10 @@ export function Profile({ userId, user }: Props) {
         return profile;
     };
     const { data, error, isLoading } = useSWR("profile", fetcher);
-
+    if (isLoading) return <div>Loading...</div>
+    if (error) return <div>Loading...</div>
+    if (!data) return <div>Loading...</div>
+    
     return (
         <>
             {/* <Head>

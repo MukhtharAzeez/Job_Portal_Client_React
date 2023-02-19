@@ -25,6 +25,7 @@ export function AllChats({ data, currentUser, setChat, onlineUsers, type }: Prop
     const [idToFetch] = useState(data.members.find((id: string) => id != currentUser))
     const [userData, setUserData] = useState<any>([])
     const [companyAdminData, setCompanyAdminData] = useState<any>([])
+    console.log(data.type, type, idToFetch)
     useEffect(() => {
         if (data.type == 'user' && type == 'user') {
             const getUserData = async () => {
@@ -62,41 +63,41 @@ export function AllChats({ data, currentUser, setChat, onlineUsers, type }: Prop
 
     return (
         currentUser ?
-        <>
-            {
-                userData &&
-                <div className="cursor-pointer hover:bg-gray-200 p-2 break-words" onClick={() => setChat(data)}>
+            <>
+                {
+                    userData &&
+                    <div className="cursor-pointer hover:bg-gray-200 p-2 break-words" onClick={() => setChat(data)}>
                         <div className='relative'>
-                        {
-                            userData?.image?.length ? (
-                                <div className="flex items-center justify-center w-8 h-8 mx-2 overflow-hidden rounded-full">
-                                    <img src={userData?.image} />
-                                </div>
-                            ) : (
-                                <div className="flex items-center justify-center mx-2 h-8 w-8 bg-indigo-200 rounded-full">
-                                    {userData?.firstName[0]}
-                                </div>
-                            )
-                        }
-                        {
-                            onlineUsers && onlineUsers.map((item: any) => {
-                                return (
-                                    item.userId == idToFetch ? (
-                                        <div className="absolute bottom-0 left-8 w-3 h-3 mr-1 rounded-full bg-green-500 border-2 border-white"></div>
-                                    ) : (
-                                        <div className="absolute bottom-0 left-8 w-3 h-3 mr-1 rounded-full bg-red-500 border-2 border-white"></div>
-                                    )
+                            {
+                                userData?.image?.length ? (
+                                    <div className="flex items-center justify-center w-8 h-8 mx-2 overflow-hidden rounded-full">
+                                        <img src={userData?.image} />
+                                    </div>
+                                ) : (
+                                    <div className="flex items-center justify-center mx-2 h-8 w-8 bg-indigo-200 rounded-full">
+                                        {userData?.firstName && userData?.firstName[0]}
+                                    </div>
                                 )
-                            })
-                        }
-                        <div className="hidden sm:block absolute ml-2 top-0 left-10  text-sm font-semibold p-2">{userData?.firstName + " " + userData?.lastName}</div>
-                    </div>
+                            }
+                            {
+                                onlineUsers && onlineUsers.map((item: any) => {
+                                    return (
+                                        item.userId == idToFetch ? (
+                                            <div className="absolute bottom-0 left-8 w-3 h-3 mr-1 rounded-full bg-green-500 border-2 border-white"></div>
+                                        ) : (
+                                            <div className="absolute bottom-0 left-8 w-3 h-3 mr-1 rounded-full bg-red-500 border-2 border-white"></div>
+                                        )
+                                    )
+                                })
+                            }
+                            <div className="hidden sm:block absolute ml-2 top-0 left-10  text-sm font-semibold p-2">{userData?.firstName + " " + userData?.lastName}</div>
+                        </div>
                         <div className="block sm:hidden text-sm font-semibold pl-2">{userData?.firstName}</div>
-                </div>
-            }
-            {
-                companyAdminData &&
-                <div className="relative cursor-pointer hover:bg-gray-200 p-2 break-words" onClick={() => setChat(data)}>
+                    </div>
+                }
+                {
+                    companyAdminData &&
+                    <div className="relative cursor-pointer hover:bg-gray-200 p-2 break-words" onClick={() => setChat(data)}>
                         <div className="relative">
                             {
                                 companyAdminData?.image?.length ? (
@@ -105,7 +106,7 @@ export function AllChats({ data, currentUser, setChat, onlineUsers, type }: Prop
                                     </div>
                                 ) : (
                                     <div className="flex items-center justify-center mx-2 h-8 w-8 bg-indigo-200 rounded-full">
-                                        {companyAdminData?.name[0]}
+                                        {companyAdminData?.name && companyAdminData?.name[0]}
                                     </div>
                                 )
                             }
@@ -123,8 +124,8 @@ export function AllChats({ data, currentUser, setChat, onlineUsers, type }: Prop
                             <div className="hidden sm:block absolute ml-2 top-0 left-10  text-sm font-semibold p-2"> {companyAdminData?.name}</div>
                         </div>
                         <div className="block sm:hidden text-sm font-semibold pl-2">{companyAdminData?.name}</div>
-                </div>
-            }
-        </> : null
+                    </div>
+                }
+            </> : null
     )
 }
