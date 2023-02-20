@@ -22,7 +22,7 @@ function App() {
   const setIsAnimating = useProgressStore((state) => state.setIsAnimating);
   const isAnimating = useProgressStore((state) => state.isAnimating);
   useEffect(() => {
-    const socket = io("http://messagesocket.labonnz.club");
+    const socket = io("https://messagesocket.labonnz.club");
     setSocket(socket)
   }, [])
   useEffect(() => {
