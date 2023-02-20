@@ -1,8 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import React from 'react';
 import Home from '../pages/user/Home'
-import { Login } from '../components/Common';
-import userLogin from '../assets/image/userLogin.svg'
 import { PublicRoute, UserProtectRouter } from '../protectRoutes';
 import CompanyDetails from '../pages/user/Company-details';
 import Inbox from '../pages/user/Inbox';
@@ -14,6 +12,7 @@ import Edit from '../pages/user/EditProfile';
 import UserSchedules from '../pages/user/UserSchedules';
 import UserSignup from '../pages/user/Signup';
 import VisitUser from '../pages/user/VisitUser';
+import UserLogin from '../pages/user/Login';
 
 function User() {
   return (
@@ -22,7 +21,7 @@ function User() {
         <Route path="/user/signup" element={<PublicRoute><UserSignup /></PublicRoute>} />
       </Routes>
       <Routes>
-        <Route path="/user/login" element={<PublicRoute><Login type={'user'} image={userLogin} color={"#38d39f"} /></PublicRoute>} />
+        <Route path="/user/login" element={<PublicRoute><UserLogin/></PublicRoute>} />
       </Routes>
       <Routes>
         <Route path="/" element={<UserProtectRouter><Home /></UserProtectRouter>} />

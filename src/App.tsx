@@ -5,6 +5,7 @@ import User from "./Routes/User";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { allUsersIdStore, messageStore, useProgressStore } from './zustand';
 import { io } from 'socket.io-client';
+import Admin from './Routes/Admin';
 const darkTheme = createTheme({
   palette: {
     mode: "dark",
@@ -57,11 +58,11 @@ function App() {
     <ThemeProvider theme={darkTheme}>
       <Router>
             <Routes>
+              <Route path="/admin/*" element={<Admin />} />
+            </Routes>
+            <Routes>
               <Route path="/*" element={<User />} />
             </Routes>
-            {/* <Routes>
-              <Route path="/admin/*" element={<Admin />} />
-            </Routes> */}
       </Router>
     </ThemeProvider>
   )
