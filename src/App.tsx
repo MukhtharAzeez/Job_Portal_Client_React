@@ -6,6 +6,7 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { allUsersIdStore, messageStore, useProgressStore } from './zustand';
 import { io } from 'socket.io-client';
 import Admin from './Routes/Admin';
+import CompanyRoutes from './Routes/Company';
 const darkTheme = createTheme({
   palette: {
     mode: "dark",
@@ -31,7 +32,7 @@ function App() {
 
   useEffect(() => {
     if (socket && id) {
-      socket.on("get-user", (users:any) => {
+      socket.on("get-user", (users: any) => {
         setOnlineUsers(users);
       });
     }
@@ -57,12 +58,15 @@ function App() {
   return (
     <ThemeProvider theme={darkTheme}>
       <Router>
-            <Routes>
-              <Route path="/admin/*" element={<Admin />} />
-            </Routes>
-            <Routes>
-              <Route path="/*" element={<User />} />
-            </Routes>
+        <Routes>
+          <Route path="/admin/*" element={<Admin />} />
+        </Routes>
+        <Routes>
+          <Route path="/company/*" element={<CompanyRoutes />} />
+        </Routes>
+        <Routes>
+          <Route path="/*" element={<User />} />
+        </Routes>
       </Router>
     </ThemeProvider>
   )

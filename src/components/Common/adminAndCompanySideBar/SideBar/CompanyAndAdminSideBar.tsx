@@ -104,7 +104,6 @@ export function CompanyAndAdminSideBar({ sidebarOpen, setSidebarOpen, links }: a
                             links.map(function (link: any) {
                                 const Icon = link.icon
                                 return (
-
                                     <li key={link.title} >
                                         <Link to={link.href} className="group relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-500 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6">
                                             <ListItemIcon className='text-gray-500 mx-4 group-hover:text-gray-800'>
@@ -118,7 +117,6 @@ export function CompanyAndAdminSideBar({ sidebarOpen, setSidebarOpen, links }: a
                         }
                     </ul>
                 </div>
-
                 <div className="pt-3 hidden lg:inline-flex 2xl:hidden justify-end mt-auto">
                     <div className="px-3 py-2">
                         <button onClick={() => setSidebarExpanded(!sidebarExpanded)}>
