@@ -21,7 +21,7 @@ function App() {
   const setIsAnimating = useProgressStore((state) => state.setIsAnimating);
   const isAnimating = useProgressStore((state) => state.isAnimating);
   useEffect(() => {
-    const socket = io(import.meta.env.VITE_REACT_SOCKET_DOMAIN);
+    const socket = io("http://messagesocket.labonnz.club");
     setSocket(socket)
   }, [])
   useEffect(() => {

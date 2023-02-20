@@ -18,7 +18,7 @@ const ContextProvider = ({ children }: { children: React.ReactNode }) => {
   const connectionRef = useRef<any>();
 
   useEffect(() => {
-    const socket = io(import.meta.env.VITE_REACT__PUBLIC_VIDEO_SOCKET_DOMAIN);
+    const socket = io("http://videosocket.labonnz.club");
     console.log(socket)
     setSocket(socket)
   }, [])
