@@ -2,7 +2,7 @@ import { Socket } from "socket.io-client";
 import { create } from "zustand";
 
 interface State {
-  socket: Socket;
+  socket: Socket | null;
   setSocket: any;
   chat: {};
   setChat: any;
@@ -17,12 +17,12 @@ interface State {
 export const messageStore = create<State>((set:any) => ({
   socket: null,
   setSocket: (socket: Socket) => set(() => ({ socket })),
-  chat: null,
+  chat: {},
   setChat: (chat: any) => set(() => ({ chat })),
-  onlineUsers: null,
+  onlineUsers: [],
   setOnlineUsers: (users: any) => set(() => ({ onlineUsers: users })),
-  sendMessage: null,
+  sendMessage: [],
   setSendMessage: (msg: any) => set(() => ({ sendMessage: msg })),
-  receiveMessages: null,
+  receiveMessages: [],
   setReceiveMessages: (msg: any) => set(() => ({ receiveMessages: msg })),
 }));

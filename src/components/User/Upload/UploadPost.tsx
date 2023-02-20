@@ -29,20 +29,20 @@ export function PostAddModal({ addPost, setAddPost }: Props) {
   //   secretAccessKey,
   // });
 
-  // const handleFile = (e: any) => {
-  //   console.log(e.target.files)
-  //   setMessage("");
-  //   const file = e.target.files;
-  //   for (let i = 0; i < file.length; i++) {
-  //     const fileType = file[i]["type"];
-  //     const validImageTypes = ["image/gif", "image/jpeg", "image/png"];
-  //     if (validImageTypes.includes(fileType)) {
-  //       setFile([...files, file[i]]);
-  //     } else {
-  //       setMessage("only images accepted");
-  //     }
-  //   }
-  // };
+  const handleFile = (e: any) => {
+    console.log(e.target.files)
+    setMessage("");
+    const file = e.target.files;
+    for (let i = 0; i < file.length; i++) {
+      const fileType = file[i]["type"];
+      const validImageTypes = ["image/gif", "image/jpeg", "image/png"];
+      if (validImageTypes.includes(fileType)) {
+        setFile([...files, file[i]]);
+      } else {
+        setMessage("only images accepted");
+      }
+    }
+  };
   const removeImage = (i: any) => {
     setFile(files.filter((x:any) => x.name !== i));
   };
@@ -50,6 +50,7 @@ export function PostAddModal({ addPost, setAddPost }: Props) {
   const descriptionHandler = (e: any) => {
     setDescription(e.target.value);
   };
+  const submitHandler = async(e: any) => {}
 
   // const submitHandler = async (e: any) => {
   //   e.preventDefault();

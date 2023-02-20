@@ -1,6 +1,6 @@
 import instance from "../../../axios/axios";
 
-export const getCurrentUserDetails = async (userId: string) => {  
+export const getCurrentUserDetails = async (userId: any) => {  
   const { data } = await instance.get(
     `/user/profile?userId=${userId}`,
     {

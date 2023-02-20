@@ -4,12 +4,12 @@ import { Assignment, Phone, PhoneDisabled } from '@material-ui/icons';
 import { makeStyles } from '@material-ui/core/styles';
 import { Alert, Snackbar } from '@mui/material';
 import { VideoSocketContext } from '../../contexts/videoSocketContext';
-import { useRouter } from 'next/router';
 import { currentCompanyAdmin } from '../../redux/company-admin/CompanyAdminAuthSlicer';
 import { useSelector } from 'react-redux';
 import { sendMessageToFriend } from '../../api/User/Post/user';
 import { sendMessageToReceiver } from '../../api/User/Get/user';
 import useNotification from '../../customHooks/useNotification';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -50,7 +50,8 @@ const Options = ({ children }: any) => {
     const [idToCall, setIdToCall] = useState('');
     const classes = useStyles();
     const [copied, setCopied] = useState(false);
-    const router = useRouter()
+    const navigate = useNavigate()
+    const location = useLocation()
     const [open, setOpen] = React.useState(false);
     const [message, setMessage] = React.useState("");
     const { companyAdminId ,adminName} = useSelector(currentCompanyAdmin)
@@ -67,13 +68,13 @@ const Options = ({ children }: any) => {
 
     const copy = async () => {
         navigator.clipboard.writeText(me);
-        if (router.query.applicantId) {
-            const result = await sendMessageToFriend(router.query.applicantId.toString(), companyAdminId, 'company')
-            await sendMessageToReceiver(companyAdminId, result.data._id, `You have an online interview now please paste this id ${me} on the video option input and join`)
+        if (location.state.applicantId) {
+            const result = await sendMessageToFriend(location.state.applicantId.toString(), companyAdminId!, 'company')
+            await sendMessageToReceiver(companyAdminId!, result.data._id, `You have an online interview now please paste this id ${me} on the video option input and join`)
             setNotification({
                 content: `you have an online interview now 🍿 check the message from ${adminName}`,
                 type: "success",
-                receiver: router.query.applicantId as string,
+                receiver: location.state.applicantId as string,
             });
             setMessage("Your Link is send to Applicant, You will get a call from the applicant when he click the link")
             setOpen(true)
@@ -91,7 +92,7 @@ const Options = ({ children }: any) => {
     }
     function handleCall() {
         leaveCall()
-        router.back()
+        navigate(-1)
     }
     return (
         <div className='flex flex-row justify-between relative'>
@@ -105,7 +106,7 @@ const Options = ({ children }: any) => {
                 <div>
                     <div className='flex flex-col'>
                         <Button onClick={copy} variant="contained" color="primary" startIcon={<Assignment fontSize="small" />} fullWidth className={classes.margin}>
-                            {router.query.applicantId  ? 'Send join id' : copied ? 'Copied' :'Copy your link'}
+                            {location.state.applicantId  ? 'Send join id' : copied ? 'Copied' :'Copy your link'}
                         </Button>
                         <TextField label="Paste Receiver Link" value={idToCall} onChange={(e) => setIdToCall(e.target.value)} />
                         <Button variant="contained" color="primary" startIcon={<Phone fontSize="small" />} fullWidth onClick={handleJoin} className={classes.margin}>

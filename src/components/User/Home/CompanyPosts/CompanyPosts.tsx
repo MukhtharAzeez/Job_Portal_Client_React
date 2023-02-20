@@ -35,7 +35,7 @@ export function CompanyPosts({ post }: props) {
             }
             setMessage(mess)
             setOpen(true);
-            await applyForJob(companyId, postId, userId);
+            await applyForJob(companyId, postId, userId!);
             const mes = {
                 message: "You successfully applied for this job",
                 messageType: "success"

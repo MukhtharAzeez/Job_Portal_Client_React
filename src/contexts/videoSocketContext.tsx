@@ -47,10 +47,10 @@ const ContextProvider = ({ children }: { children: React.ReactNode }) => {
   const answerCall = () => {
     setCallAccepted(true);
     const peer = new Peer({ initiator: false, trickle: false, stream });
-    peer.on("signal", (data) => {
-      socket.emit("answerCall", { signal: data, to: call.from });
+    peer.on("signal", (data:any) => {
+      socket?.emit("answerCall", { signal: data, to: call.from });
     });
-    peer.on("stream", (currentStream) => {
+    peer.on("stream", (currentStream:any) => {
       if (userVideo.current){
         userVideo.current.srcObject = currentStream;
       }
@@ -61,20 +61,20 @@ const ContextProvider = ({ children }: { children: React.ReactNode }) => {
 
   const callUser = (id: string) => {
     const peer = new Peer({ initiator: true, trickle: false, stream });
-    peer.on("signal", (data) => {
-      socket.emit("callUser", {
+    peer.on("signal", (data:any) => {
+      socket?.emit("callUser", {
         userToCall: id,
         signalData: data,
         from: me,
         name,
       });
     });
-    peer.on("stream", (currentStream) => {
+    peer.on("stream", (currentStream:any) => {
       if (userVideo.current) {
         userVideo.current.srcObject = currentStream;
       }
     });
-    socket.on("callAccepted", (signal:any) => {
+    socket?.on("callAccepted", (signal:any) => {
       setCallAccepted(true);
       peer.signal(signal);
     });

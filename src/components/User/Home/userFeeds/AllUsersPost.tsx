@@ -69,7 +69,7 @@ export function AllUsersPost({ post }: props) {
   };
 
   async function handleLike(postId: string) {
-    const result = await postLike(postId, userId);
+    const result = await postLike(postId, userId!);
     if (result.data) {
       setLikes(likes + 1);
       setNotification({
@@ -97,7 +97,7 @@ export function AllUsersPost({ post }: props) {
   async function sendComment(postId: string) {
     setEmojiPicker(false);
     if (comment.trim().length == 0) return setComment("");
-    await postComment(postId, userId, comment);
+    await postComment(postId, userId!, comment);
     setNotification({
       content: `${userName} has commented on your post !`,
       type: "info",

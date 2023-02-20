@@ -35,7 +35,7 @@ export function UserComment({ comment }: any) {
           <div className="mt-4 flex items-center">
             <div
               className="text-sm text-gray-500 font-semibold cursor-pointer"
-              onClick={() => likeAComment(comment._id, userId)}
+              onClick={() => likeAComment(comment._id, userId!)}
             >
               {totalLikes} Likes
             </div>

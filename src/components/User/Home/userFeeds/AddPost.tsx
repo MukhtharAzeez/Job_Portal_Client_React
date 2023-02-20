@@ -30,7 +30,7 @@ export function AddPost() {
               <Avatar alt="User Profile" src={image} />
             ) : (
               <Avatar className="bg-black" aria-label="recipe">
-                {userName[0]}
+                  {userName && userName[0]}
               </Avatar>
             )
           }

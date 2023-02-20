@@ -14,7 +14,7 @@ export function EditProfile() {
   const { userId } = useSelector(currentUser)
 
   const fetcher = async () => {
-    const profile:any = await getCurrentUserDetails(userId);
+    const profile:any = await getCurrentUserDetails(userId!);
     return profile;
   };
   const { data, error, isLoading } = useSWR("profile", fetcher);
@@ -126,60 +126,64 @@ export function EditProfile() {
 
   async function handleSubmit(event: any) {
     event.preventDefault();
-    const formData = new FormData(event.target);
-    const bday = formData.get("DOB")
-    if(new Date(bday!.toString())<=new Date(new Date().toString())){
 
-    }else{
-      setMessage("Date is invalid");
-      setOpen(true)
-      return
-    }
+    if(userId){
+      const formData = new FormData(event.target);
+      const bday = formData.get("DOB")
+      if (new Date(bday!.toString()) <= new Date(new Date().toString())) {
 
-    if (qualifications.length > 0) {
-      formData.append("qualifications", JSON.stringify(qualifications));
-    }
-    else { formData.append("qualifications", JSON.stringify(data.qualifications)); }
-    if (skills.length > 0) { formData.append("skills", JSON.stringify(skills)); }
-    else { formData.append("skills", JSON.stringify(data.skills)); }
-    formData.append("userId", userId);
-
-    setSave(true)
-    let url
-    if (proImg) {
-      url = await uploadImage(proImg)
-    } else if (data.image.length > 0) {
-      url = data.image
-    } else {
-      url = "https://w7.pngwing.com/pngs/798/436/png-transparent-computer-icons-user-profile-avatar-profile-heroes-black-profile-thumbnail.png"
-    }
-
-    let resumeUrl
-    if (resumeImage) {
-      resumeUrl = await uploadImage(resumeImage)
-    } else if (data.resume.length > 0) {
-      resumeUrl = data.resume
-    } else {
-      resumeUrl = ""
-    }
-
-    try {
-      
-      formData.append("image", url);
-      formData.append("resume",resumeUrl)
-      await updateUserProfile(formData);
-      setSave(false)
-      navigate('/user/profile')
-    } catch (error: any) {
-      const type = typeof error.response.data.message;
-      if (type == "string") {
-        setMessage(error.response.data.message);
       } else {
-        setMessage(error.response.data.message[0]);
+        setMessage("Date is invalid");
+        setOpen(true)
+        return
       }
-      setOpen(true);
-      setSave(false)
+
+      if (qualifications.length > 0) {
+        formData.append("qualifications", JSON.stringify(qualifications));
+      }
+      else { formData.append("qualifications", JSON.stringify(data.qualifications)); }
+      if (skills.length > 0) { formData.append("skills", JSON.stringify(skills)); }
+      else { formData.append("skills", JSON.stringify(data.skills)); }
+      formData.append("userId", userId);
+
+      setSave(true)
+      let url
+      if (proImg) {
+        url = await uploadImage(proImg)
+      } else if (data.image.length > 0) {
+        url = data.image
+      } else {
+        url = "https://w7.pngwing.com/pngs/798/436/png-transparent-computer-icons-user-profile-avatar-profile-heroes-black-profile-thumbnail.png"
+      }
+
+      let resumeUrl
+      if (resumeImage) {
+        resumeUrl = await uploadImage(resumeImage)
+      } else if (data.resume.length > 0) {
+        resumeUrl = data.resume
+      } else {
+        resumeUrl = ""
+      }
+
+      try {
+
+        formData.append("image", url);
+        formData.append("resume", resumeUrl)
+        await updateUserProfile(formData);
+        setSave(false)
+        navigate('/user/profile')
+      } catch (error: any) {
+        const type = typeof error.response.data.message;
+        if (type == "string") {
+          setMessage(error.response.data.message);
+        } else {
+          setMessage(error.response.data.message[0]);
+        }
+        setOpen(true);
+        setSave(false)
+      }
     }
+    
   }
   return (
     <>

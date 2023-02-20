@@ -25,8 +25,10 @@ export function AppliedJobs() {
     const [row, setRow] = useState(10)
     const [skip, setSkip]= useState(0)
     async function fetchData(skip: number) {
-        const appliedJobs = await getAllAppliedJobs(userId, skip, row);
-        setAppliedJobs(appliedJobs)
+        if(userId){
+            const appliedJobs = await getAllAppliedJobs(userId, skip, row);
+            setAppliedJobs(appliedJobs)
+        }
     }
     async function fetcher(skip: number) {
         if (skip == 0) {

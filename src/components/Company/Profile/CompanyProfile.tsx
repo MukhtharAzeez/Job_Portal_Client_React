@@ -63,7 +63,7 @@ export function CompanyProfile() {
     async function handleChange(event: any, value: number) {
         fetchAdmins(value - 1);
     };
-    async function sendMessage(curUserId: string, userId: string) {
+    async function sendMessage(curUserId: any, userId: string) {
         await sendMessageToFriend(curUserId, userId,'company')
         navigate('/user/inbox')
     }

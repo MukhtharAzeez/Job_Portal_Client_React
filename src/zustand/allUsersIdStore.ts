@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
 interface State {
-  id: string;
+  id: string | null;
   setId: any;
 }
 

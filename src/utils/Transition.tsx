@@ -46,7 +46,7 @@ function CSSTransition({
     classes.length && node.classList.remove(...classes);
   }
 
-  const nodeRef = React.useRef(null);
+  const nodeRef = React.useRef<any>(null);
   const Component = tag;
 
   return (
@@ -56,7 +56,7 @@ function CSSTransition({
       unmountOnExit={removeFromDom}
       in={show}
       addEndListener={(done:any) => {
-        nodeRef.current.addEventListener('transitionend', done, false)
+          nodeRef.current.addEventListener('transitionend', done, false)
       }}
       onEnter={() => {
         if (!removeFromDom) nodeRef.current.style.display = null;
