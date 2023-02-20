@@ -7,6 +7,7 @@ import { allUsersIdStore, messageStore, useProgressStore } from './zustand';
 import { io } from 'socket.io-client';
 import Admin from './Routes/Admin';
 import CompanyRoutes from './Routes/Company';
+import CompanyAdminRoutes from './Routes/CompanyAdmin';
 const darkTheme = createTheme({
   palette: {
     mode: "dark",
@@ -63,6 +64,9 @@ function App() {
         </Routes>
         <Routes>
           <Route path="/company/*" element={<CompanyRoutes />} />
+        </Routes>
+        <Routes>
+          <Route path="/company-admin/*" element={<CompanyAdminRoutes />} />
         </Routes>
         <Routes>
           <Route path="/*" element={<User />} />

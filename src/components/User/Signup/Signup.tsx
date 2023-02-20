@@ -40,7 +40,6 @@ export function SignUp() {
         if (reason === "clickaway") {
             return;
         }
-
         setOpen(false);
     };
 
@@ -78,9 +77,7 @@ export function SignUp() {
     }
 
     const [showPassword, setShowPassword] = React.useState(false);
-
     const handleClickShowPassword = () => setShowPassword((show) => !show);
-
     const handleMouseDownPassword = (
         event: React.MouseEvent<HTMLButtonElement>
     ) => {
@@ -92,223 +89,225 @@ export function SignUp() {
 
     return (
         <>
+            <Box
+                bgcolor={"white"}
+                sx={{
+                    display: "flex",
+                    flexWrap: "wrap",
+                    alignItems: "center",
+                    // marginTop: 10,
+                }}
+                className="min-h-[100vh]"
+            >
                 <Box
-                    bgcolor={"white"}
                     sx={{
-                        display: "flex",
-                        flexWrap: "wrap",
-                        alignItems: "center",
-                        marginTop: 10,
+                        width: "50%",
+                        display: { xs: "none", md: "flex" },
+                        justifyContent: "center",
+                        paddingLeft: 18,
                     }}
                 >
+                    <img
+                        src={userSignup}
+                        alt=""
+                        width={480}
+                        height={480}
+                    />
+                </Box>
+                <Container
+                    component="main"
+                    sx={{ marginLeft: { md: 8, xs: "auto" } }}
+                    maxWidth="xs"
+                >
+                    <CssBaseline />
                     <Box
                         sx={{
-                            width: "50%",
-                            display: { xs: "none", md: "flex" },
-                            justifyContent: "center",
-                            paddingLeft: 18,
+                            marginTop: 8,
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "center",
                         }}
                     >
-                        <img
-                            src={userSignup}
-                            alt=""
-                            width={480}
-                            height={480}
-                        />
-                    </Box>
-                    <Container
-                        component="main"
-                        sx={{ marginLeft: { md: 8, xs: "auto" } }}
-                        maxWidth="xs"
-                    >
-                        <CssBaseline />
+                        <Typography component="h1" variant="h5">
+                            SIGN UP
+                        </Typography>
                         <Box
-                            sx={{
-                                marginTop: 8,
-                                display: "flex",
-                                flexDirection: "column",
-                                alignItems: "center",
-                            }}
+                            component="form"
+                            noValidate
+                            onSubmit={handleSubmit}
+                            sx={{ mt: 1 }}
                         >
-                            <Typography component="h1" variant="h5">
-                                SIGN UP
-                            </Typography>
-                            <Box
-                                component="form"
-                                noValidate
-                                onSubmit={handleSubmit}
-                                sx={{ mt: 1 }}
-                            >
-                                <Grid container spacing={2}>
-                                    <Grid item xs={12} sm={6}>
-                                        <TextField
-                                            autoComplete="given-name"
-                                            name="firstName"
-                                            required
-                                            fullWidth
-                                            id="firstName"
-                                            label="First Name"
-                                            variant="filled"
-                                            autoFocus
-                                            size="small"
-                                            InputProps={{
-                                                disableUnderline: true, // <== added this
-                                            }}
-                                        />
-                                    </Grid>
-                                    <Grid item xs={12} sm={6}>
-                                        <TextField
-                                            required
-                                            fullWidth
-                                            id="lastName"
-                                            label="Last Name"
-                                            name="lastName"
-                                            autoComplete="family-name"
-                                            variant="filled"
-                                            size="small"
-                                            InputProps={{
-                                                disableUnderline: true, // <== added this
-                                            }}
-                                        />
-                                    </Grid>
-                                    <Grid item xs={12}>
-                                        <TextField
-                                            required
-                                            fullWidth
-                                            id="email"
-                                            label="Email"
-                                            name="email"
-                                            autoComplete="email"
-                                            variant="filled"
-                                            size="small"
-                                            InputProps={{
-                                                disableUnderline: true, // <== added this
-                                            }}
-                                        />
-                                    </Grid>
-                                    <Grid item xs={12}>
-                                        <TextField
-                                            required
-                                            fullWidth
-                                            type="number"
-                                            id="mobile"
-                                            label="Mobile"
-                                            name="mobile"
-                                            autoComplete="email"
-                                            variant="filled"
-                                            size="small"
-                                            InputProps={{
-                                                disableUnderline: true, // <== added this
-                                            }}
-                                        />
-                                    </Grid>
-                                    <Grid item xs={12}>
-                                        <TextField
-                                            required
-                                            fullWidth
-                                            id="password"
-                                            label="Password"
-                                            name="password"
-                                            autoComplete="Password"
-                                            variant="filled"
-                                            size="small"
-                                            type="password"
-                                            InputProps={{
-                                                disableUnderline: true, // <== added this
-                                            }}
-                                        />
-                                    </Grid>
-                                    <Grid item xs={12}>
-                                        <FormControl fullWidth required variant="filled">
-                                            <InputLabel htmlFor="filled-adornment-password">
-                                                Confirm Password
-                                            </InputLabel>
-                                            <FilledInput
-                                                name="confirmPassword"
-                                                id="filled-adornment-password"
-                                                type={showPassword ? "text" : "password"}
-                                                endAdornment={
-                                                    <InputAdornment position="end">
-                                                        <IconButton
-                                                            aria-label="toggle password visibility"
-                                                            onClick={handleClickShowPassword}
-                                                            onMouseDown={handleMouseDownPassword}
-                                                            edge="end"
-                                                        >
-                                                            {showPassword ? (
-                                                                <VisibilityOff />
-                                                            ) : (
-                                                                <Visibility />
-                                                            )}
-                                                        </IconButton>
-                                                    </InputAdornment>
-                                                }
-                                            />
-                                        </FormControl>
-                                    </Grid>
-
-                                    <Grid item xs={12}>
-                                        <FormControlLabel
-                                            control={
-                                                <Checkbox
-                                                    value="TermsAndConditions"
-                                                    defaultChecked
-                                                    sx={{
-                                                        color: "#6c63ff",
-                                                        "&.Mui-checked": {
-                                                            color: "#6c63ff",
-                                                        },
-                                                    }}
-                                                    color="primary"
-                                                />
-                                            }
-                                            label="Accept Terms And Conditions"
-                                        />
-                                    </Grid>
+                            <Grid container spacing={2}>
+                                <Grid item xs={12} sm={6}>
+                                    <TextField
+                                        className="bg-gray-400 rounded-md"
+                                        autoComplete="given-name"
+                                        name="firstName"
+                                        required
+                                        fullWidth
+                                        id="firstName"
+                                        label="First Name"
+                                        variant="filled"
+                                        autoFocus
+                                        size="small"
+                                        InputProps={{
+                                            disableUnderline: true, // <== added this
+                                        }}
+                                    />
                                 </Grid>
-                                <Button
-                                    type="submit"
-                                    fullWidth
-                                    variant="contained"
-                                    sx={{
-                                        mt: 3,
-                                        mb: 2,
-                                        backgroundColor: "#6c63ff",
-                                        height: 50,
-                                        "&:hover": { backgroundColor: "#6c63ff" },
-                                    }}
-                                    style={{ backgroundColor: "#6c63ff" }}
-                                >
-                                    {isLoading ? (
-                                        <CircularProgress sx={{ color: "white" }} />
-                                    ) : (
-                                        "Sign Up"
-                                    )}
-                                </Button>
+                                <Grid item xs={12} sm={6}>
+                                    <TextField
+                                        className="bg-gray-400 rounded-md"
+                                        required
+                                        fullWidth
+                                        id="lastName"
+                                        label="Last Name"
+                                        name="lastName"
+                                        autoComplete="family-name"
+                                        variant="filled"
+                                        size="small"
+                                        InputProps={{
+                                            disableUnderline: true, // <== added this
+                                        }}
+                                    />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <TextField
+                                        className="bg-gray-400 rounded-md"
+                                        required
+                                        fullWidth
+                                        id="email"
+                                        label="Email"
+                                        name="email"
+                                        autoComplete="email"
+                                        variant="filled"
+                                        size="small"
+                                        InputProps={{
+                                            disableUnderline: true, // <== added this
+                                        }}
+                                    />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <TextField
+                                        className="bg-gray-400 rounded-md"
+                                        required
+                                        fullWidth
+                                        type="number"
+                                        id="mobile"
+                                        label="Mobile"
+                                        name="mobile"
+                                        autoComplete="email"
+                                        variant="filled"
+                                        size="small"
+                                        InputProps={{
+                                            disableUnderline: true, // <== added this
+                                        }}
+                                    />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <TextField
+                                        className="bg-gray-400 rounded-md"
+                                        required
+                                        fullWidth
+                                        id="password"
+                                        label="Password"
+                                        name="password"
+                                        autoComplete="Password"
+                                        variant="filled"
+                                        size="small"
+                                        type="password"
+                                        InputProps={{
+                                            disableUnderline: true, // <== added this
+                                        }}
+                                    />
+                                </Grid>
+                                <Grid item xs={12}>
 
-                            </Box>
-                            {/* <Grid container justifyContent="center" className="flex flex-row">
-                  <Grid item sx={{ cursor: "pointer" }}>
-                    <p >Already have an account? Sign In</p>
-                  </Grid>
-                </Grid> */}
-                            <div className="flex justify-center flex-col">
-                                <p>Already have an account? <span onClick={loginPage} className="cursor-pointer hover:text-[#6c63ff]">Sign In</span> </p>
-                                <p className="text-center">or </p>
-                                <p>Looking for create a Page? <span onClick={createCompany} className="cursor-pointer hover:text-[#6c63ff]">Create</span> </p>
-                            </div>
+                                    <FormControl fullWidth required variant="filled" className="bg-gray-400 rounded-md">
+                                        <InputLabel htmlFor="filled-adornment-password">
+                                            Confirm Password
+                                        </InputLabel>
+                                        <FilledInput
+                                            name="confirmPassword"
+                                            id="filled-adornment-password"
+                                            type={showPassword ? "text" : "password"}
+                                            endAdornment={
+                                                <InputAdornment position="end">
+                                                    <IconButton
+                                                        aria-label="toggle password visibility"
+                                                        onClick={handleClickShowPassword}
+                                                        onMouseDown={handleMouseDownPassword}
+                                                        edge="end"
+                                                    >
+                                                        {showPassword ? (
+                                                            <VisibilityOff />
+                                                        ) : (
+                                                            <Visibility />
+                                                        )}
+                                                    </IconButton>
+                                                </InputAdornment>
+                                            }
+                                        />
+                                    </FormControl>
+                                </Grid>
+
+                                <Grid item xs={12}>
+                                    <FormControlLabel
+                                        control={
+                                            <Checkbox
+                                                value="TermsAndConditions"
+                                                defaultChecked
+                                                sx={{
+                                                    color: "#6c63ff",
+                                                    "&.Mui-checked": {
+                                                        color: "#6c63ff",
+                                                    },
+                                                }}
+                                                color="primary"
+                                            />
+                                        }
+                                        className="text-black"
+                                        label="Accept Terms And Conditions"
+                                    />
+                                </Grid>
+                            </Grid>
+                            <Button
+                                type="submit"
+                                fullWidth
+                                variant="contained"
+                                sx={{
+                                    mt: 3,
+                                    mb: 2,
+                                    backgroundColor: "#6c63ff",
+                                    height: 50,
+                                    "&:hover": { backgroundColor: "#6c63ff" },
+                                }}
+                                style={{ backgroundColor: "#6c63ff" }}
+                            >
+                                {isLoading ? (
+                                    <CircularProgress sx={{ color: "white" }} />
+                                ) : (
+                                    "Sign Up"
+                                )}
+                            </Button>
                         </Box>
-                    </Container>
-                    <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-                        <Alert
-                            onClose={handleClose}
-                            severity="error"
-                            sx={{ width: "100%" }}
-                        >
-                            {message}
-                        </Alert>
-                    </Snackbar>
-                </Box>
+                        <div className="flex justify-center flex-col">
+                            <p className="text-black">Already have an account? <span onClick={loginPage} className="cursor-pointer hover:text-[#6c63ff]">Sign In</span> </p>
+                            <p className="text-center text-black">or </p>
+                            <p className="text-black">Looking for create a Page? <span onClick={createCompany} className="cursor-pointer hover:text-[#6c63ff]">Create</span> </p>
+                        </div>
+                    </Box>
+                </Container>
+                <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+                    <Alert
+                        onClose={handleClose}
+                        severity="error"
+                        sx={{ width: "100%" }}
+                    >
+                        {message}
+                    </Alert>
+                </Snackbar>
+            </Box>
         </>
     );
 }

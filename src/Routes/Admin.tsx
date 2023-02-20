@@ -7,7 +7,6 @@ import Company from '../pages/admin/Company';
 import AdminCompanyDetails from '../pages/admin/CompanyDetails';
 
 function Admin() {
-    console.log("Here")
     return (
         <>
             {/* <Routes>
